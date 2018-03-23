@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.hotelManageSystem.dao.UserMapper">
+	<select id="selUserById" parameterType="String" resultType="user" >
+	select * from user where userName = #{userName}
+	</select>
+	<select id="userCenter" parameterType="Integer" resultType="user" >
+	select * from user where userId = #{userId}
+	</select>
+	
+	<select id="selUserCount" resultType="int">
+	select count(*) from user
+	</select>
+	
+	<insert id="addUser" parameterType="user">
+	insert into user(userId,userName,userLevel,phoneNumber,passWord,email,score) values(#{userId},#{userName},#{userLevel},#{phoneNumber},#{passWord},#{email},#{score})
+	</insert>
+	 <update id="userLevelChange" parameterType="user" >
+	UPDATE `hotel`.`user` SET `score` = #{0}  WHERE `userId` = #{1}; 
+	</update>
+	
+	</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+	<mapper namespace="com.hotelManageSystem.dao.OrderMapper">
+	<select id="selOrderByDate" resultType="order">
+	select * from `hotel`.`order` where `start_date`!=#{start_date} and  `end_date`!=#{end_date} 
+	</select>
+	<select id="selOrder" resultType="order">
+	SELECT * FROM `hotel`.`order`;
+	</select>
+	<select id="selOrderById" resultType="order">
+	SELECT * FROM `hotel`.`order` where `orderId`=#{orderId};
+	</select>
+	<select id="selOrderByName" resultType="order">
+	SELECT * FROM `hotel`.`order` where `userId`=#{userId};
+	</select>
+	
+	<insert id="pay" parameterType="order">
+	INSERT INTO `hotel`.`order` (`orderId`,`userId`,`roomId`,`payState`, `count`,`price`,`start_date`,`end_date`,`tolPrice`,`userNumber`,`orderName`) VALUES (#{orderId},#{userId},#{roomId},'否',#{count},#{price},#{start_date},#{end_date},#{tolPrice},#{userNumber},#{orderName}); 
+	</insert>
+	
+	 <update id="payWayChange" parameterType="order" >
+	UPDATE `hotel`.`order` SET `payWay` = #{0}  WHERE `orderId` = #{1}; 
+	</update>
+	
+	 <update id="payStateChange" parameterType="order" >
+	UPDATE `hotel`.`order` SET `payState` = '是'  WHERE `orderId` = #{orderId}; 
+	</update>
+	
+	<delete id="delOrder" parameterType="order" >
+	delete from `hotel`.`order` where orderId=#{orderId}
+	</delete>
+		</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+	<mapper namespace="com.hotelManageSystem.dao.RoomMapper">
+	<insert id="addRoom" parameterType="room">
+	insert into room values(#{roomId},#{type},#{price},#{img},#{count})
+	</insert>
+	
+	<select id="selRoom" resultType="room">
+	SELECT * FROM room ;
+	</select>
+	
+	<select id="selRoomlimit" resultType="room">
+	SELECT * FROM room;
+	</select>
+	<select id="selRoomById" parameterType="String" resultType="room">
+	select * from room where roomId=#{roomId}
+	</select>
+	</mapper>
